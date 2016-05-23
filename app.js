@@ -2,31 +2,26 @@ var express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
     morgan = require('morgan');
-
-
-var db = mongoose.connect('mongodb://localhost/portfolioAPI');
-
-var Book = require('./models/bookModel');
-var Project = require('./models/projectModel');
-
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+var db = mongoose.connect('mongodb://localhost/portfolioAPI');
+
+
 
 var port = process.env.PORT || 3000;
 
-app.use(express.static(__dirname + '/public'));
+
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
+app.use(morgan('dev'));
+
 app.use(express.static(__dirname + '/public'));
 
+var api = require('./routes/api')(app, express, io);
 
-bookRouter = require('./routes/bookRoutes')(Book);
-projectRouter = require('./routes/projectRoutes')(Project, express, io);
-
-app.use('/api/books', bookRouter);
-app.use('/api/projects', projectRouter);
+app.use('/api', api);
 //app.use('/api/authors', authorRouter);
 
 
