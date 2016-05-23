@@ -1,0 +1,12 @@
+<div ng-controller="EditProjectCtrl as vm">
+  <input type="text" ng-model="vm.projectData.title" required />
+  <input type="text" ng-model="vm.projectData.img_url" required />
+  <input type="text" ng-model="vm.projectData.description" required />
+  <input type="text" ng-model="vm.projectData.project_url" required />
+  <input type="text" ng-model="vm.projectData.category" required />
+  <input type="hidden" ng-model="vm.projectData._id" />
+
+  <button ng-click="vm.edit()"> Submit Changes </button>
+  <button ng-click="vm.delete(vm.projectData._id)"> Delete project </button>
+  <div ng-if="vm.message">{{ vm.message }} </div>
+</div>

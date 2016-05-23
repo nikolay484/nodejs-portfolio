@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="MyAdminApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <base href='/admin/'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
+    <script type="text/javascript" src="https://code.angularjs.org/1.5.0-rc.0/angular-route.min.js"></script>
+
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+
+
+    <script type="text/javascript" src="controllers/mainCtrl.js"></script>
+    <script type="text/javascript" src="controllers/projectCtrl.js"></script>
+
+    <script type="text/javascript" src="services/projectService.js"></script>
+    <script type="text/javascript" src="app.routes.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+
+</head>
+<body ng-controller="MainController as main">
+<header>
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="/admin" class="navbar-brand"><span class="glyphicon glyphicon-book"></span>bestvision portfolio</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="allProjects">all projects</a></li>
+                <li><a href="addProject">add project</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
+                <li ng-if="!main.loggedIn"><a href="/signup">Sign Up</a></li>
+                <li ng-if="main.loggedIn"><a href="#">Hello {{ main.user }} </a></li>
+                <li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+
+</header>
+<main class="container">
+
+    <div ng-view>admin</div>
+</main>
+</body>
+
+</html>

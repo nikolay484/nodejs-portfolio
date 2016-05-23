@@ -1,0 +1,11 @@
+<div ng-controller="AddProjectCtrl as vm">
+
+    <input type="text" ng-model="vm.projectData.title" required />
+    <input type="text" ng-model="vm.projectData.img_url" required />
+    <input type="text" ng-model="vm.projectData.description" required />
+    <input type="text" ng-model="vm.projectData.project_url" required />
+    <input type="text" ng-model="vm.projectData.category" required />
+    <div>project name : {{ vm.projectData }} </div>
+
+    <button ng-click="vm.create()"> {{ vm.message }}</button>
+</div>
