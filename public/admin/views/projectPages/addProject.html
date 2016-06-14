@@ -1,0 +1,34 @@
+<div ng-controller="AddProjectCtrl as vm">
+    <div class="container">
+
+        <form name="addprojectForm" ng-submit="vm.create()">
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" ng-model="vm.projectData.title"  name="project_title" class="form-control" required />
+                <p ng-show="addprojectForm.project_title.$invalid && !addprojectForm.project_title.$pristine" class="help-block">Project title can't be empty</p>
+                <label>image url</label>
+                <input type="hidden" ng-model="vm.projectData.img_url"  name="project_image" class="form-control" required />
+                <input ng-if="!vm.projectData.img_url" type="file" nv-file-select name="project_image" uploader="uploader" class="form-control" required />
+
+                <img ng-if="vm.projectData.img_url" ng-src="{{ vm.projectData.img_url }}" />
+                <input type="button" ng-if="vm.projectData.img_url" ng-click="vm.remove_image()" value="delete image">
+
+                <p ng-show="addprojectForm.project_image.$invalid && !addprojectForm.project_title.$pristine" class="help-block">Enter image url</p>
+                <label>project description</label>
+                <input type="text" ng-model="vm.projectData.description"  class="form-control" required />
+                <label>project url </label>
+                <input type="text" ng-model="vm.projectData.project_url"  class="form-control" required />
+                <label>category</label>
+                <!--<input type="text" ng-model="vm.projectData.category"  class="form-control" required />-->
+                <select name="multipleSelect" id="multipleSelect" class="form-control" ng-model="vm.projectData.category" multiple>
+                    <option ng-repeat="category in vm.categories" ng-selected="{{ category.name == vm.projectData.category }}" value="{{ category.name }} ">{{category.name }}</option>
+                </select>
+                 <div>project name : {{ vm.projectData }} </div>
+
+                 <button type="submit" class="btn btn-primary" ng-disabled="addprojectForm.$invalid"> Add project</button>
+            </div>
+        </form>
+        <div ng-show="vm.message">{{ vm.message }}</div>
+
+    </div>
+</div>

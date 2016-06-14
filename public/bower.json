@@ -1,0 +1,31 @@
+{
+  "name": "angular-homepage",
+  "version": "0.1",
+  "homepage": "https://github.com/nikolay484/angular-portfolio-page",
+  "authors": [
+    "Nikolay Waysman <nikolay484@gmail.com>"
+  ],
+  "description": "Angular with wodpress api",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "~1.4.9",
+    "angular-bootstrap": "~1.1.0",
+    "angular-cookies": "~1.4.9",
+    "angular-loader": "~1.4.9",
+    "angular-route": "~1.4.9",
+    "angular-sanitize": "~1.4.9",
+    "bootstrap": "~3.3.6",
+    "font-awesome": "~4.5.0",
+    "imagesloaded": "~4.1.0",
+    "masonry": "~4.0.0"
+  }
+}

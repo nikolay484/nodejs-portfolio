@@ -13,15 +13,22 @@ angular.module('projectService', [])
         projectFactory.create = function(projectData) {
             return $http.post('/api/projects', projectData);
         }
-        projectFactory.getProjectById = function(id) {
-            return $http.get('/api/projects/' + id);
+        projectFactory.getProjectByName = function(name) {
+            return $http.get('/api/projects/' + name);
         }
-        projectFactory.updateProjectById = function(id, projectData) {
-            return $http.patch('/api/projects/' + id, projectData);
+        projectFactory.updateProjectByName = function(project_name, projectData) {
+            return $http.patch('/api/projects/' + project_name, projectData);
         }
-        projectFactory.deleteProjectById = function(id) {
-            return $http.delete('/api/projects/' + id);
+        projectFactory.deleteProjectByName = function(project_name) {
+            return $http.delete('/api/projects/' + project_name);
         }
+        projectFactory.uploadProjectImg = function(file) {
+            return $http.post('/uploads/' + file);
+        }
+        projectFactory.getUploadedImage = function(file) {
+            return $http.get('/uploads/' + file);
+        }
+
 
 
         return projectFactory;

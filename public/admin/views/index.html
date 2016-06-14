@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <title>Admin</title>
     <base href='/admin/'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
     <script type="text/javascript" src="https://code.angularjs.org/1.5.0-rc.0/angular-route.min.js"></script>
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 
 
     <script type="text/javascript" src="controllers/mainCtrl.js"></script>
     <script type="text/javascript" src="controllers/projectCtrl.js"></script>
+    <script type="text/javascript" src="controllers/categoryCtrl.js"></script>
+    <script type="text/javascript" src="controllers/skillCtrl.js"></script>
 
+    <script type="text/javascript" src="services/categoryService.js"></script>
+    <script type="text/javascript" src="services/skillService.js"></script>
     <script type="text/javascript" src="services/projectService.js"></script>
     <script type="text/javascript" src="app.routes.js"></script>
     <script type="text/javascript" src="app.js"></script>
@@ -26,11 +33,6 @@
             <div class="navbar-header">
                 <a href="/admin" class="navbar-brand"><span class="glyphicon glyphicon-book"></span>bestvision portfolio</a>
             </div>
-            <ul class="nav navbar-nav">
-                <li><a href="allProjects">all projects</a></li>
-                <li><a href="addProject">add project</a></li>
-            </ul>
-
             <ul class="nav navbar-nav navbar-right">
                 <li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
                 <li ng-if="!main.loggedIn"><a href="/signup">Sign Up</a></li>
@@ -39,12 +41,22 @@
             </ul>
         </div>
     </div>
-
 </header>
-<main class="container">
 
-    <div ng-view>admin</div>
+<main class="container">
+    <aside>
+        <div class="col-md-2">
+            <ul class="nav navbar-nav">
+                <li><a href="allProjects">all projects</a></li>
+                <li><a href="addProject">add project</a></li>
+                <li><a href="allCategories">list / add categories</a></li>
+                <li><a href="allSkills">list / add skills</a></li>
+            </ul>
+        </div>
+    </aside>
+    <div class="col-md-10" ng-view></div>
 </main>
+
 </body>
 
 </html>

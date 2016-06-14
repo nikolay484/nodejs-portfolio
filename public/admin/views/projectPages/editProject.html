@@ -1,0 +1,42 @@
+<div ng-controller="EditProjectCtrl as vm">
+  <div class="container">
+    <div ng-if="vm.error">{{ vm.error }}</div>
+    <div ng-if="vm.projectData">
+
+      <button ng-click="vm.edit()"> Submit Changes </button>
+      <button ng-click="vm.delete(vm.projectData.title)"> Delete project </button>
+
+    <form name="editprojectForm" ng-submit="vm.edit()">
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" ng-model="vm.projectData.title"  name="project_title" class="form-control" required />
+        <p ng-show="editprojectForm.project_title.$invalid && !editprojectForm.project_title.$pristine" class="help-block">Project title can't be empty</p>
+        <label>image url</label>
+        <input type="hidden" ng-model="vm.projectData.img_url"  name="project_image" class="form-control" />
+
+        <input ng-if="!vm.projectData.img_url" type="file" nv-file-select name="project_image" uploader="uploader" class="form-control" required />
+        <!--<img ng-src="data:image/JPEG;base64,{{vm.image}}">-->
+
+        <img ng-if="vm.projectData.img_url" ng-src="{{ vm.projectData.img_url }}" />
+        <input type="button" ng-if="vm.projectData.img_url" ng-click="vm.remove_image()" value="delete image">
+
+        <p ng-show="addprojectForm.project_image.$invalid && !addprojectForm.project_title.$pristine" class="help-block">Enter image url</p>
+        <label>project description</label>
+        <input type="text" ng-model="vm.projectData.description"  class="form-control" required />
+        <label>project url </label>
+        <input type="text" ng-model="vm.projectData.project_url"  class="form-control" required />
+        <label>category</label>
+        <!--<input type="text" ng-model="vm.projectData.category"  class="form-control" required />-->
+        <select name="multipleSelect" id="multipleSelect" class="form-control" ng-model="vm.projectData.category" multiple>
+          <option value="1">Wordpress</option>
+          <option value="2">Landing Page</option>
+          <option value="3">Development</option>
+        </select>
+
+        <button type="submit" class="btn btn-primary" ng-disabled="editprojectForm.$invalid"> Add project</button>
+      </div>
+      <input type="hidden" ng-model="vm.projectData._id" />
+    </form>
+    </div>
+  </div>
+</div>

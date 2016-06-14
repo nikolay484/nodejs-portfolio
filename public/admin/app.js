@@ -1,7 +1,8 @@
 angular.module('MyAdminApp', [
     'mainCtrl',
     'projectCtrl',
-    'projectService',
-    'appRoutes',
+    'categoryCtrl',
+    'skillCtrl',
+    'appRoutes'
 
 ])

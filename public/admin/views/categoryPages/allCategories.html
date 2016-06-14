@@ -1,0 +1,27 @@
+<div ng-controller="AllCategoryController as vm">
+    <div class="container">
+        <div class="panel panel-success">
+            <div class="panel-heading">categories list : </div>
+
+
+        </div>
+        <div ng-if="vm.error">{{ vm.error }} </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form name="addCategory" ng-submit="vm.create()" novalidate>
+                <input type="text" ng-model="vm.categoryData.name" name="new_cat" required ng-class="{ 'has-error': addCategory.new_cat.$touched && addCategory.new_cat.$invalid }" />
+
+                <button ng-disabled="addCategory.$invalid"> Create category </button>
+                </form>
+
+                <div ng-if="vm.categories">
+
+                <div class="panel-body" ng-repeat="each in vm.categories">
+                    <p>{{ each.name }}</p><button ng-click="vm.delete(each.name)">X</button>
+                </div>
+
+                </div>
+            </div>
+        </div>
+        </div>
+</div>

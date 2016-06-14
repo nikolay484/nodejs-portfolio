@@ -1,0 +1,94 @@
+$white : #ffffff;
+$white-smoke : #f5f5f5;
+$gray60 : #999999;
+$gray32 : #525252;
+$rhino : #3b4350;
+$rhino-light : #4F5D6B;
+$black : #000000;
+$light-sea : #15beb7;
+$dark-sea : #15837C;
+
+@mixin border_bottom-transition($time, $action) {
+  -webkit-transition:border-bottom #{$time}s $action;
+  -moz-transition:border-bottom #{$time}s $action;
+  -ms-transition:border-bottom #{$time}s $action;
+  -o-transition:border-bottom #{$time}s $action;
+  transition:border-bottom #{$time}s $action;
+}
+@mixin transform-prespective($prespective, $rotate) {
+  -moz-transform: perspective($prespective) rotateY($rotate);
+  -ms-transform: perspective($prespective) rotateY($rotate);
+  -webkit-transform: perspective($prespective) rotateY($rotate);
+  -o-transform: perspective($prespective) rotateY($rotate);
+  transform: perspective($prespective) rotateY($rotate);
+}
+@mixin transition_opacity () {
+  -o-transition:color .2s ease-out, opacity .2s ease-in;
+  -ms-transition:color .2s ease-out, opacity .2s ease-in;
+  -moz-transition:color .2s ease-out, opacity .2s ease-in;
+  -webkit-transition:color .2s ease-out, opacity .2s ease-in;
+  transition:color .2s ease-out, opacity .2s ease-in;
+}
+@mixin transition_background () {
+  -webkit-transition: all .2s ease; /* Safari and Chrome */
+  -moz-transition: all .2s ease; /* Firefox */
+  -ms-transition: all .2s ease; /* IE 9 */
+  -o-transition: all .2s ease; /* Opera */
+  transition: all .2s ease;
+}
+
+@mixin image_scale() {
+    -webkit-transform:scale(1.1); /* Safari and Chrome */
+    -moz-transform:scale(1.1); /* Firefox */
+    -ms-transform:scale(1.1); /* IE 9 */
+    -o-transform:scale(1.1); /* Opera */
+    transform:scale(1.1);
+}
+@mixin gradient_top_to_bottom($start-colour, $end-colour) {
+        background-color: $start-colour;
+        background-image: -webkit-gradient(linear, left top, left bottom, from($start-colour), to($end-colour));
+        background-image: -webkit-linear-gradient(bottom, $start-colour, $end-colour);
+        background-image:    -moz-linear-gradient(bottom, $start-colour, $end-colour);
+        background-image:     -ms-linear-gradient(bottom, $start-colour, $end-colour);
+        background-image:      -o-linear-gradient(bottom, $start-colour, $end-colour);
+        background-image:         linear-gradient(bottom, $start-colour, $end-colour);
+        filter:            progid:DXImageTransform.Microsoft.gradient(start-colourStr='#{$start-colour}', end-colourStr='#{$end-colour}');
+    }
+.statistics_block {
+  background: $white-smoke;
+  .statistics {
+    text-align: center;
+    margin: 60px auto;
+    float: none;
+    .icon {
+      width: 100px;
+      height: 100px;
+      background: $light-sea;
+      border: 2px solid $white;
+      border-radius: 50px;
+//      @include transition_background();
+      i {
+        font-size: 40px;
+        padding: 29px 0;
+        color: $white
+      }
+      &:hover {
+        background: $white-smoke;
+        border: 2px solid $light-sea;
+        i {
+          color: $light-sea;
+        }
+      }
+    }
+    .num {
+      font-size: 55px;
+      color: $gray32;
+    }
+    p {
+      font-size: 20px;
+      color: $gray60;
+      text-transform: capitalize;
+    }
+  }
+}
+

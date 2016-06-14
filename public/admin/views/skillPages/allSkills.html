@@ -1,0 +1,42 @@
+<div ng-controller="AllSkillController as vm">
+    <div class="container">
+        <div class="panel panel-success">
+            <div class="panel-heading">Skills list : </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form name="addSkill" ng-submit="vm.create()" novalidate class="form-inline" >
+                    <div class="form-group">
+
+                            <label>skill title</label>
+                            <input type="text" class="form-control" ng-model="vm.skillData.title" name="new_skill" required ng-class="{ 'has-error': addSkill.new_skill.$touched && addSkill.new_skill.$invalid }" />
+                    </div>
+                    <div class="form-group">
+                    <label>skill level</label>
+                            <input type="number" class="form-control" ng-model="vm.skillData.level" name="new_lvl" required ng-class="{ 'has-error': addSkill.new_lvl.$touched && addSkill.new_lvl.$invalid }" />
+                      </div>
+                             <button class="btn btn-primary" ng-disabled="addSkill.$invalid"> Create category </button>
+
+
+                </form>
+                <div ng-if="vm.error">{{ vm.error }} </div>
+                <div ng-if="vm.skills">
+
+                    <div class="panel-body" ng-repeat="each in vm.skills">
+                        <div class="col-sm-4">
+                            {{ each.title }}
+                        </div>
+                        <div class="col-sm-4">
+                            <progress class="progress progress-striped progress-success" value="{{ each.level }}" max="100">{{ each.level }}%</progress>
+
+                        </div>
+                        <div class="col-sm-4"><button ng-click="vm.delete(each.title)">X</button></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

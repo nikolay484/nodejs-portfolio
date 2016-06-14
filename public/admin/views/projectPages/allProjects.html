@@ -1,16 +1,17 @@
 <div ng-controller="AllProjectController as vm">
 <div class="row">
     <div class="col-md-12">
-
+    <div ng-if="vm.error">{{ vm.error }} </div>
+    <div ng-if="vm.projects">
         <div class="panel panel-success">
             <div class="panel-heading">project list : </div>
 
             <div class="panel-body" ng-repeat="each in vm.projects">
-                <p><a href="editProject/{{ each._id }}">{{ each.title }}</a></p><button ng-click="vm.delete(each._id)">X</button>
+                <p><a href="editProject/{{ each.title }}">{{ each.title }}</a></p><button ng-click="vm.delete(each.title)">X</button>
             </div>
         </div>
     </div>
-
+    </div>
 </div>
 
 </div>

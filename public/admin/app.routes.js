@@ -10,15 +10,29 @@ angular.module('appRoutes', ['ngRoute'])
             //.when('/signup', {
             //    templateUrl : 'app/views/pages/signup.html'
             //})
-            .when('/editProject/:id', {
-                templateUrl : 'views/pages/editProject.html'
+            .when('/editProject/:projectName', {
+                templateUrl : 'views/projectPages/editProject.html'
             })
             .when('/addProject', {
-                templateUrl : 'views/pages/addProject.html'
+                templateUrl : 'views/projectPages/addProject.html'
             })
             .when('/allProjects', {
-                templateUrl: 'views/pages/allProjects.html'
+                templateUrl: 'views/projectPages/allProjects.html'
             })
+            // category routes
+            .when('/allCategories', {
+                templateUrl: 'views/categoryPages/allCategories.html'
+            })
+            .when('/editCategory/:categoryName', {
+                templateUrl : 'views/categoryPages/editCategory.html'
+            })
+            .when('/addCategory', {
+                templateUrl : 'views/categoryPages/addCategory.html'
+            })
+            .when('/allSkills', {
+                templateUrl : 'views/skillPages/allSkills.html'
+            })
+
 
         $locationProvider.html5Mode(true);
     });
