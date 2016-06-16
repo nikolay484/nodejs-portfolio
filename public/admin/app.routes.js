@@ -32,7 +32,24 @@ angular.module('appRoutes', ['ngRoute'])
             .when('/allSkills', {
                 templateUrl : 'views/skillPages/allSkills.html'
             })
+            .when('/login' , {
+                templateUrl : 'views/userActions/login.html'
+            })
+            .when('/allUsers' , {
+                templateUrl : 'views/userActions/allUsers.html'
+            })
 
 
         $locationProvider.html5Mode(true);
+    })
+    .run(function ($rootScope, $location, User, AUTH_EVENTS) {
+        $rootScope.$on('$locationChangeStart', function (event,next, nextParams, fromState) {
+// console.log(window.localStorage.UserAdminToken);
+            if (!User.isAuthenticated()) {
+                 $location.path("login");
+            } else if(User.isAuthenticated() && $location.$$path == '/login')  {
+                $location.path("/");
+            }
+
+        });
     });

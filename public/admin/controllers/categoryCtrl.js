@@ -42,18 +42,12 @@ function EditCategoryCtrl(Category, $routeParams, $location) {
         })
     }
 }
-function AllCategoryController(Category, socketio) {
+function AllCategoryController(Category, socketio, $scope) {
     var vm = this;
     vm.categories = new Object();
     Category.allCategories().success(function(data){
         if(data.error) { vm.error = data.error; vm.categories = false } else { vm.categories = data; vm.error = false }
     });
-
-    vm.delete = function(id) {
-        Category.deleteCategoryByName(id).success(function(data) {
-            vm.message = data.message;
-        })
-    }
     socketio.on('category', function(data) {
         Category.allCategories().success(function(data){
             if(data.error) { vm.error = data.error; vm.categories = false } else { vm.categories = data; vm.error = false }
@@ -65,5 +59,9 @@ function AllCategoryController(Category, socketio) {
             .success(function(data) {
                 vm.categoryData.name = '';
             });
+    };
+    vm.showCategoryDelDialog = function (name) {
+        $scope.category_name = false;
+        $scope.category_name = name;
     };
 }

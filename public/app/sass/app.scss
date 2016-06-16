@@ -137,10 +137,19 @@ header {
 }
 section {
   &.main {
-    .slider_block {
+    .video_slide {
+      position: relative;
+      overflow: hidden;
       padding: 0;
-      .row {
-        margin: 0;
+      max-height: 788px;
+      video {
+        width: 100%;
+      }
+      .in_video {
+        position: absolute;
+        top: 30%;
+        left: 0;
+        right: 0;
       }
     }
     .about_me {

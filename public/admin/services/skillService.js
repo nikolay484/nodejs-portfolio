@@ -4,21 +4,21 @@ angular.module('skillService', [])
 
     .factory('Skill' , function($http) {
 
-        var categoryFactory = {};
+        var skillFactory = {};
 
-        categoryFactory.allSkills = function() {
+        skillFactory.allSkills = function() {
             return $http.get('/api/skills');
         }
 
-        categoryFactory.create = function(skill) {
+        skillFactory.create = function(skill) {
             return $http.post('/api/skills', skill);
         }
-        categoryFactory.getSkillByName = function(name) {
-            return $http.get('/api/skills/' + name);
+        skillFactory.getSkillByName = function(skill_name) {
+            return $http.get('/api/skills/' + skill_name);
         }
-        categoryFactory.deleteSkillByName = function(category_name) {
-            return $http.delete('/api/skills/' + category_name);
+        skillFactory.deleteSkillByName = function(skill_name) {
+            return $http.delete('/api/skills/' + skill_name);
         }
 
-        return categoryFactory;
+        return skillFactory;
     });

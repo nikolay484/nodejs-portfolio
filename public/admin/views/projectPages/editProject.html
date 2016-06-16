@@ -28,9 +28,7 @@
         <label>category</label>
         <!--<input type="text" ng-model="vm.projectData.category"  class="form-control" required />-->
         <select name="multipleSelect" id="multipleSelect" class="form-control" ng-model="vm.projectData.category" multiple>
-          <option value="1">Wordpress</option>
-          <option value="2">Landing Page</option>
-          <option value="3">Development</option>
+          <option ng-repeat="category in vm.categories" ng-selected="{{ category.name == vm.projectData.category }}" value="{{ category.name }} ">{{category.name }}</option>
         </select>
 
         <button type="submit" class="btn btn-primary" ng-disabled="editprojectForm.$invalid"> Add project</button>

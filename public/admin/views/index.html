@@ -18,10 +18,12 @@
     <script type="text/javascript" src="controllers/projectCtrl.js"></script>
     <script type="text/javascript" src="controllers/categoryCtrl.js"></script>
     <script type="text/javascript" src="controllers/skillCtrl.js"></script>
+    <script type="text/javascript" src="controllers/userActions.js"></script>
 
     <script type="text/javascript" src="services/categoryService.js"></script>
     <script type="text/javascript" src="services/skillService.js"></script>
     <script type="text/javascript" src="services/projectService.js"></script>
+    <script type="text/javascript" src="services/userService.js"></script>
     <script type="text/javascript" src="app.routes.js"></script>
     <script type="text/javascript" src="app.js"></script>
 
@@ -34,27 +36,28 @@
                 <a href="/admin" class="navbar-brand"><span class="glyphicon glyphicon-book"></span>bestvision portfolio</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
-                <li ng-if="!main.loggedIn"><a href="/signup">Sign Up</a></li>
+                <li ng-if="!main.loggedIn"><a href="login">Login</a></li>
                 <li ng-if="main.loggedIn"><a href="#">Hello {{ main.user }} </a></li>
-                <li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
+                <li ng-if="main.loggedIn"><a href="#" ng-click="main.logout()">Logout</a></li>
             </ul>
         </div>
     </div>
 </header>
 
 <main class="container">
-    <aside>
+    <aside ng-if="main.loggedIn">
         <div class="col-md-2">
             <ul class="nav navbar-nav">
                 <li><a href="allProjects">all projects</a></li>
                 <li><a href="addProject">add project</a></li>
                 <li><a href="allCategories">list / add categories</a></li>
                 <li><a href="allSkills">list / add skills</a></li>
+                <li><a href="allUsers">manage Users</a></li>
             </ul>
         </div>
     </aside>
-    <div class="col-md-10" ng-view></div>
+    <div class="col-md-10" ng-view ng-if="main.loggedIn"></div>
+    <div class="col-md-12" ng-view ng-if="!main.loggedIn"></div>
 </main>
 
 </body>

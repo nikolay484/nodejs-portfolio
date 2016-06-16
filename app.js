@@ -2,13 +2,17 @@ var express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
-    multer = require('multer')
+    multer = require('multer'),
+    passport = require('passport'),
+    jwt = require('jwt-simple');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var JwtStrategy = require('passport-jwt').Strategy;
+var ExtractJwt = require('passport-jwt').ExtractJwt;
 
 var db = mongoose.connect('mongodb://localhost/portfolioAPI');
-
+var config = { 'secret' : 'secretKey'};
 
 var port = process.env.PORT || 3000;
 
@@ -31,10 +35,15 @@ app.use(morgan('dev'));
 
 app.use(express.static(__dirname + '/public'));
 
-var api = require('./routes/api')(app, express, io);
+var api = require('./routes/api')(app, express, io, config, jwt, passport);
+// pass passport for configuration
+require('./routes/auth')(passport, config, JwtStrategy, ExtractJwt);
 
 
+//use the passport packege
+app.use(passport.initialize());
 app.use('/api', api);
+
 //app.use('/api/authors', authorRouter);
 
 
@@ -48,6 +57,7 @@ app.post('/uploads', function(req, res) {
    })
 
 });
+
 
 app.use('/uploads/',express.static(__dirname + '/uploads'));
 app.use('/fonts/',express.static(__dirname + '/fonts'));

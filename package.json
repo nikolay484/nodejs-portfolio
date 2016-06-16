@@ -18,5 +18,11 @@
     "socket.io": "~1.4.6",
     "jsonwebtoken": "~7.0.0",
     "multer": "~1.1.0"
+  },
+  "devDependencies": {
+    "jwt-simple": "~0.5.0",
+    "passport": "~0.3.2",
+    "bcrypt": "~0.8.7",
+    "passport-jwt": "~2.0.0"
   }
 }

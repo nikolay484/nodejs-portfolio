@@ -2,26 +2,38 @@
     <div class="container">
         <div class="panel panel-success">
             <div class="panel-heading">categories list : </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <form name="addCategory" class="form-group" ng-submit="vm.create()" novalidate>
+                        <div class="input-group">
+                            <input type="text" ng-model="vm.categoryData.name" class="form-control" name="new_cat" required ng-class="{ 'has-error': addCategory.new_cat.$touched && addCategory.new_cat.$invalid }" />
+                            <span class="input-group-btn">
+                                 <button class="btn btn-default"  ng-disabled="addCategory.$invalid"> Create category </button>
+                            </span>
+                        </div>
+                    </form>
 
+                    <div ng-if="vm.categories">
 
-        </div>
-        <div ng-if="vm.error">{{ vm.error }} </div>
-        <div class="row">
-            <div class="col-md-12">
-                <form name="addCategory" ng-submit="vm.create()" novalidate>
-                <input type="text" ng-model="vm.categoryData.name" name="new_cat" required ng-class="{ 'has-error': addCategory.new_cat.$touched && addCategory.new_cat.$invalid }" />
+                        <div class="panel-body" ng-repeat="each in vm.categories">
+                            <div class="row">
+                                <div class="col-md-11">{{ each.name }}</div>
+                                <div class="col-md-1">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="vm.showCategoryDelDialog(each.name)"></span>
+                                </div>
+                            </div>
 
-                <button ng-disabled="addCategory.$invalid"> Create category </button>
-                </form>
+                        </div>
+                        <if-Category-Delete></if-Category-Delete>
 
-                <div ng-if="vm.categories">
-
-                <div class="panel-body" ng-repeat="each in vm.categories">
-                    <p>{{ each.name }}</p><button ng-click="vm.delete(each.name)">X</button>
-                </div>
-
+                    </div>
                 </div>
             </div>
+            <div ng-if="vm.error">{{ vm.error }} </div>
+
+
         </div>
+
+
         </div>
 </div>
